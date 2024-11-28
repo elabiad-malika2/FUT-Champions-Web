@@ -25,7 +25,7 @@ const logoForm = document.getElementById("logo");
 const ratingForm = document.getElementById("rating");
 
 
-    function showStat(){
+    function AfficherStatistique(){
         if (positionPlayer.value == "GK") {
             statPlayers.innerHTML = `
                 <div class="flex flex-col gap-3">
@@ -151,7 +151,7 @@ const ratingForm = document.getElementById("rating");
 
 
 
-    function showPlayers() {
+    function AfficherJoueur() {
         joueurContainer.innerHTML = ``;
         players.forEach(player => {
             joueurContainer.innerHTML += `
@@ -173,8 +173,13 @@ const ratingForm = document.getElementById("rating");
             `  
 
         });
+        modifierJoueur();
 
-        // Edit d'un joeur
+
+
+    }
+    function modifierJoueur(){
+        
 
         const playersCarte = document.querySelectorAll("#playersCarte");
         const btn = document.getElementById("editDelete");
@@ -226,7 +231,7 @@ const ratingForm = document.getElementById("rating");
                 flagForm.value = data.flag;
                 nationalityForm.value = data.nationality;
                 clubForm.value = data.club;
-                showStat()
+                AfficherStatistique()
 
                 if (data.position == "GK") {
                     divForm.value = data.diving;
@@ -250,13 +255,11 @@ const ratingForm = document.getElementById("rating");
             })
 
         });
-
-
     }
-    showPlayers();
+    AfficherJoueur();
 
     positionPlayer.addEventListener("change", function () {
-        showStat();
+        AfficherStatistique();
         
         const pacForm = document.getElementById("pac");
         const shoForm = document.getElementById("sho");
@@ -301,7 +304,7 @@ const ratingForm = document.getElementById("rating");
             console.log("sssss", playerAjouter);
             localStorage.setItem('players', JSON.stringify(players))
 
-            showPlayers();
+            AfficherJoueur();
 
 
 
