@@ -42,6 +42,7 @@ if (!localStorage.getItem("players")) {
 }
 const players = JSON.parse(localStorage.getItem("players"));
 
+// Fonction d'affichage des joueurs
     function afficherJoueur(){
         joueurContainer.innerHTML = ``;
         players.forEach(player => {
@@ -62,6 +63,87 @@ const players = JSON.parse(localStorage.getItem("players"));
                     <p class="positioning physical text-[6px] whitespace-nowrap absolute left-[57%] top-[75%]  font-extralight text-customText">${player.position == 'GK' ? player.positioning : player.physical} ${player.position == 'GK' ? 'POS' : 'PHY'} </p>
                 </div> 
             `  
+            modifierJoueur();
 
         });
+    }
+    afficherJoueur();
+
+    // fonction de modification des joueurs
+    function modifierJoueur() {
+        const playersCarte = document.querySelectorAll("#playersCarte");
+        const btn = document.getElementById("editDelete");
+        const btnAdd = document.getElementById("btnAdd");
+        
+        
+
+
+        playersCarte.forEach(element => {
+            element.addEventListener("click", function () {
+                btn.style.display="flex";
+                btnAdd.style.display="none";
+                
+                
+                console.log(element);
+                let data = {
+                    photo: element.querySelector(".photo").getAttribute("src"),
+                    rating: parseInt(element.querySelector(".rating").textContent),
+                    position: element.querySelector(".position").textContent,
+                    logo: element.querySelector(".logo").getAttribute("src"),
+                    name: element.querySelector(".name").textContent,
+                    flag: element.querySelector(".flag").getAttribute("src"),
+                    nationality: element.dataset.nat,
+                    club: element.dataset.club,
+                }
+                if (data.position == "GK") {
+                    data.diving = parseInt(element.querySelector(".diving").textContent);
+                    data.handling = parseInt(element.querySelector(".handling").textContent);
+                    data.kicking = parseInt(element.querySelector(".kicking").textContent);
+                    data.reflexes = parseInt(element.querySelector(".reflexes").textContent);
+                    data.speed = parseInt(element.querySelector(".speed").textContent);
+                    data.positioning = parseInt(element.querySelector(".positioning").textContent);
+
+                } else {
+                    data.pace = parseInt(element.querySelector(".pace").textContent);
+                    data.shooting = parseInt(element.querySelector(".shooting").textContent);
+                    data.passing = parseInt(element.querySelector(".passing").textContent);
+                    data.dribbling = parseInt(element.querySelector(".dribbling").textContent);
+                    data.defending = parseInt(element.querySelector(".defending").textContent);
+                    data.physical = parseInt(element.querySelector(".physical").textContent);
+                }
+                
+
+                nomForm.value = data.name;
+                photoForm.value = data.photo;
+                ratingForm.value = data.rating;
+                positionPlayer.value = data.position;
+                logoForm.value = data.logo;
+                flagForm.value = data.flag;
+                nationalityForm.value = data.nationality;
+                clubForm.value = data.club;
+                showStat()
+
+                if (data.position == "GK") {
+                    divForm.value = data.diving;
+                    hanForm.value = data.handling;
+                    kickForm.value = data.kicking;
+                    refForm.value = data.reflexes;
+                    speForm.value = data.speed;
+                    posForm.value = data.positioning;
+
+                } else {
+                    phyForm.value = data.physical;
+                    defForm.value = data.defending;
+                    driForm.value = data.dribbling;
+                    pasForm.value = data.passing;
+                    shoForm.value = data.shooting;
+                    pacForm.value = data.pace
+                }
+
+
+
+            })
+
+        });
+        
     }
