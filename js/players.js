@@ -23,3 +23,21 @@ const flagForm = document.getElementById("flag");
 const clubForm = document.getElementById("club");
 const logoForm = document.getElementById("logo");
 const ratingForm = document.getElementById("rating");
+
+// stocker data dans localStorage
+
+if (!localStorage.getItem("players")) {
+    const jsonFile = "../data.json";
+    fetch(jsonFile)
+        .then(response => {
+            if (!response.ok) {
+                throw new Error("Erreur lors de la récupération du fichier JSON");
+            }
+            return response.json();
+        })
+        .then(data => {
+            localStorage.setItem("players", JSON.stringify(data.players))
+        })
+        .catch(error => console.error("Erreur :", error));
+}
+const players = JSON.parse(localStorage.getItem("players"));
