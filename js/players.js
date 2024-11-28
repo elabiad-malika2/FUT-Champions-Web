@@ -24,26 +24,134 @@ const clubForm = document.getElementById("club");
 const logoForm = document.getElementById("logo");
 const ratingForm = document.getElementById("rating");
 
-// stocker data dans localStorage
 
-if (!localStorage.getItem("players")) {
-    const jsonFile = "../data.json";
-    fetch(jsonFile)
-        .then(response => {
-            if (!response.ok) {
-                throw new Error("Erreur lors de la récupération du fichier JSON");
-            }
-            return response.json();
-        })
-        .then(data => {
-            localStorage.setItem("players", JSON.stringify(data.players))
-        })
-        .catch(error => console.error("Erreur :", error));
-}
-const players = JSON.parse(localStorage.getItem("players"));
+    function showStat(){
+        if (positionPlayer.value == "GK") {
+            statPlayers.innerHTML = `
+                <div class="flex flex-col gap-3">
+                            <div class="flex items-center gap-3">
+                                <label  class="text-sm font-semibold text-white">Diving</label>
+                                <input id="div" 
+                                    class="w-32 p-2 bg-gray-800 border border-gray-600 rounded-lg text-white placeholder-gray-400 focus:outline-none focus:ring-2 focus:ring-yellow-500"
+                                    type="number" min="1" max="100">
+                            </div>
+                            <div class="flex items-center gap-3">
+                                <label  class="text-sm font-semibold text-white">handling</label>
+                                <input id="han" 
+                                    class="w-32 p-2 bg-gray-800 border border-gray-600 rounded-lg text-white placeholder-gray-400 focus:outline-none focus:ring-2 focus:ring-yellow-500"
+                                    type="number" min="1" max="100">
+                            </div>
+                            <div class="flex items-center gap-3">
+                                <label  class="text-sm font-semibold text-white">Kicking</label>
+                                <input id="kick" 
+                                    class="w-32 p-2 bg-gray-800 border border-gray-600 rounded-lg text-white placeholder-gray-400 focus:outline-none focus:ring-2 focus:ring-yellow-500"
+                                    type="number" min="1" max="100">
+                            </div>
+                        </div>
+                        <div class="flex flex-col gap-3">
+                            <div class="flex items-center gap-3">
+                                <label  class="text-sm font-semibold text-white">Reflexes</label>
+                                <input id="ref" 
+                                    class="w-32 p-2 bg-gray-800 border border-gray-600 rounded-lg text-white placeholder-gray-400 focus:outline-none focus:ring-2 focus:ring-yellow-500"
+                                    type="number" min="1" max="100">
+                            </div>
+                            <div class="flex items-center gap-3">
+                                <label  class="text-sm font-semibold text-white">Speed</label>
+                                <input id="spe" 
+                                    class="w-32 p-2 bg-gray-800 border border-gray-600 rounded-lg text-white placeholder-gray-400 focus:outline-none focus:ring-2 focus:ring-yellow-500"
+                                    type="number" min="1" max="100">
+                            </div>
+                            <div class="flex items-center gap-3">
+                                <label  class="text-sm font-semibold text-white">Positioning</label>
+                                <input id="pos" 
+                                    class="w-32 p-2 bg-gray-800 border border-gray-600 rounded-lg text-white placeholder-gray-400 focus:outline-none focus:ring-2 focus:ring-yellow-500"
+                                    type="number" min="1" max="100">
+                            </div>
+                        </div>
+            `
+        } else {
+            statPlayers.innerHTML = `
+            <div class="flex flex-col gap-3">
+                            <div class="flex items-center gap-3">
+                                <label  class="text-sm font-semibold text-white">PAC</label>
+                                <input id="pac" 
+                                    class="w-32 p-2 bg-gray-800 border border-gray-600 rounded-lg text-white placeholder-gray-400 focus:outline-none focus:ring-2 focus:ring-yellow-500"
+                                    type="number" min="1" max="100">
+                            </div>
+                            <div class="flex items-center gap-3">
+                                <label  class="text-sm font-semibold text-white">SHO</label>
+                                <input id="sho" 
+                                    class="w-32 p-2 bg-gray-800 border border-gray-600 rounded-lg text-white placeholder-gray-400 focus:outline-none focus:ring-2 focus:ring-yellow-500"
+                                    type="number" min="1" max="100">
+                            </div>
+                            <div class="flex items-center gap-3">
+                                <label  class="text-sm font-semibold text-white">PAS</label>
+                                <input id="pas" 
+                                    class="w-32 p-2 bg-gray-800 border border-gray-600 rounded-lg text-white placeholder-gray-400 focus:outline-none focus:ring-2 focus:ring-yellow-500"
+                                    type="number" min="1" max="100">
+                            </div>
+                        </div>
+                        <div class="flex flex-col gap-3">
+                            <div class="flex items-center gap-3">
+                                <label  class="text-sm font-semibold text-white">DRI</label>
+                                <input id="dri" 
+                                    class="w-32 p-2 bg-gray-800 border border-gray-600 rounded-lg text-white placeholder-gray-400 focus:outline-none focus:ring-2 focus:ring-yellow-500"
+                                    type="number" min="1" max="100">
+                            </div>
+                            <div class="flex items-center gap-3">
+                                <label  class="text-sm font-semibold text-white">DEF</label>
+                                <input id="def" 
+                                    class="w-32 p-2 bg-gray-800 border border-gray-600 rounded-lg text-white placeholder-gray-400 focus:outline-none focus:ring-2 focus:ring-yellow-500"
+                                    type="number" min="1" max="100">
+                            </div>
+                            <div class="flex items-center gap-3">
+                                <label  class="text-sm font-semibold text-white">PHY</label>
+                                <input id="phy" 
+                                    class="w-32 p-2 bg-gray-800 border border-gray-600 rounded-lg text-white placeholder-gray-400 focus:outline-none focus:ring-2 focus:ring-yellow-500"
+                                    type="number" min="1" max="100">
+                            </div>
+                        </div>
+            `
+        }
+        // Gardient
+        let divForm = document.getElementById("div");
+        hanForm = document.getElementById("han");
+        kickForm = document.getElementById("kick");
+        refForm = document.getElementById("ref");
+        speForm = document.getElementById("spe");
+        posForm = document.getElementById("pos");
 
-// Fonction d'affichage des joueurs
-    function afficherJoueur(){
+        // Player
+        pacForm = document.getElementById("pac");
+        shoForm = document.getElementById("sho");
+        pasForm = document.getElementById("pas");
+        driForm = document.getElementById("dri");
+        defForm = document.getElementById("def");
+        phyForm = document.getElementById("phy");
+
+
+    }
+
+    if (!localStorage.getItem("players")) {
+        const jsonFile = "../data.json";
+        fetch(jsonFile)
+            .then(response => {
+                if (!response.ok) {
+                    throw new Error("Erreur lors de la récupération du fichier JSON");
+                }
+                return response.json();
+            })
+            .then(data => {
+                localStorage.setItem("players", JSON.stringify(data.players))
+            })
+            .catch(error => console.error("Erreur :", error));
+    }
+    const players = JSON.parse(localStorage.getItem("players"));
+
+
+
+
+    function showPlayers() {
         joueurContainer.innerHTML = ``;
         players.forEach(player => {
             joueurContainer.innerHTML += `
@@ -63,14 +171,11 @@ const players = JSON.parse(localStorage.getItem("players"));
                     <p class="positioning physical text-[6px] whitespace-nowrap absolute left-[57%] top-[75%]  font-extralight text-customText">${player.position == 'GK' ? player.positioning : player.physical} ${player.position == 'GK' ? 'POS' : 'PHY'} </p>
                 </div> 
             `  
-            modifierJoueur();
 
         });
-    }
-    afficherJoueur();
 
-    // fonction de modification des joueurs
-    function modifierJoueur() {
+        // Edit d'un joeur
+
         const playersCarte = document.querySelectorAll("#playersCarte");
         const btn = document.getElementById("editDelete");
         const btnAdd = document.getElementById("btnAdd");
@@ -145,9 +250,10 @@ const players = JSON.parse(localStorage.getItem("players"));
             })
 
         });
-        
+
+
     }
-    // Evenement pour ajouter la formulaire d'une maniere dynamique
+    showPlayers();
 
     positionPlayer.addEventListener("change", function () {
         showStat();
@@ -204,3 +310,4 @@ const players = JSON.parse(localStorage.getItem("players"));
         document.getElementById('btnAdd').addEventListener('click', (event) => addPlayer(event));
 
     })
+
