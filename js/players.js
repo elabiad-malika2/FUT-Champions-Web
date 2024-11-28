@@ -147,3 +147,60 @@ const players = JSON.parse(localStorage.getItem("players"));
         });
         
     }
+    // Evenement pour ajouter la formulaire d'une maniere dynamique
+
+    positionPlayer.addEventListener("change", function () {
+        showStat();
+        
+        const pacForm = document.getElementById("pac");
+        const shoForm = document.getElementById("sho");
+        const pasForm = document.getElementById("pas");
+        const driForm = document.getElementById("dri");
+        const defForm = document.getElementById("def");
+        const phyForm = document.getElementById("phy");
+
+        function addPlayer(e) {
+            e.preventDefault();
+
+
+            let playerAjouter = {
+                name: nomForm.value,
+                photo: photoForm.value,
+                nationality: nationalityForm.value,
+                position: positionPlayer.value,
+                flag: flagForm.value,
+                club: clubForm.value,
+                logo: clubForm.value,
+                rating: ratingForm.value,
+            }
+
+            if (playerAjouter.position == "GK") {
+                playerAjouter.diving = divForm.value;
+                playerAjouter.handling = hanForm.value;
+                playerAjouter.kicking = kickForm.value;
+                playerAjouter.reflexes = refForm.value;
+                playerAjouter.speed = speForm.value;
+                playerAjouter.positioning = posForm.value;
+
+            } else {
+                playerAjouter.pace = pacForm.value;
+                playerAjouter.shooting = shoForm.value;
+                playerAjouter.passing = pasForm.value;
+                playerAjouter.dribbling = driForm.value;
+                playerAjouter.defending = defForm.value;
+                playerAjouter.physical = phyForm.value;
+
+            }
+            players.push(playerAjouter);
+            console.log("sssss", playerAjouter);
+            localStorage.setItem('players', JSON.stringify(players))
+
+            showPlayers();
+
+
+
+        }
+
+        document.getElementById('btnAdd').addEventListener('click', (event) => addPlayer(event));
+
+    })
