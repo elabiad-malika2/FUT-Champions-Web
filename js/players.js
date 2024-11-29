@@ -195,9 +195,8 @@ function modifierJoueur() {
 
 
 
-            console.log(element);
             data = {
-                id: element.dataset.id,
+                id: parseInt(element.dataset.id),
                 photo: element.querySelector(".photo").getAttribute("src"),
                 rating: parseInt(element.querySelector(".rating").textContent),
                 position: element.querySelector(".position").textContent,
@@ -207,6 +206,8 @@ function modifierJoueur() {
                 nationality: element.dataset.nat,
                 club: element.dataset.club,
             }
+            console.log(data);
+
             if (data.position == "GK") {
                 data.diving = parseInt(element.querySelector(".diving").textContent);
                 data.handling = parseInt(element.querySelector(".handling").textContent);
@@ -271,6 +272,7 @@ function modifierJoueur() {
                 nationality: nationalityForm.value,
                 club: clubForm.value,
             }
+            console.log(joueur)
             if (joueur.position == "GK") {
                 joueur.diving = divForm.value;
                 joueur.handling = hanForm.value;
@@ -289,14 +291,26 @@ function modifierJoueur() {
             }
 
             console.log("jjj",joueur);
-            players[data.id]=joueur;
+            let i;
+            players.forEach((p,index) => {
+                if(p.id == data.id)
+                {
+                   i  = index
+                }
+            })
+            console.log('player before', players[i])
+            console.log('player after', joueur)
+
+             players[i]=joueur;
+             console.log('player edited', players[i])
+
             localStorage.setItem("players",JSON.stringify(players));
             AfficherJoueur();
             form.reset();
             
             
 
-        })
+        }, { once: true})
         const btnDelete = document.getElementById("btnDelete")
         btnDelete.addEventListener("click",function(e){
             e.preventDefault();
