@@ -301,8 +301,8 @@ function modifierJoueur() {
             console.log('player before', players[i])
             console.log('player after', joueur)
 
-             players[i]=joueur;
-             console.log('player edited', players[i])
+            players[i]=joueur;
+            console.log('player edited', players[i])
 
             localStorage.setItem("players",JSON.stringify(players));
             AfficherJoueur();
