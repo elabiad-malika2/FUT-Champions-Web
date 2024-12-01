@@ -10,3 +10,16 @@ const menuButton = document.getElementById("mobile-menu-button");
     menuButton.addEventListener("click", () => {
             mobileMenu.classList.toggle("hidden");
     });
+
+// prendre tous les id des cartes 
+let GK = document.getElementById("GK");
+let RB = document.getElementById("RB");
+let CBR = document.getElementById("CBR");
+let CBL = document.getElementById("CBL");
+let LB = document.getElementById("LB");
+let CMR = document.getElementById("CMR");
+let CM = document.getElementById("CM");
+let CML = document.getElementById("CML");
+let RW = document.getElementById("RW");
+let ST = document.getElementById("ST");
+let LW = document.getElementById("LW")
