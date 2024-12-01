@@ -50,8 +50,40 @@ allCards.forEach(card => {
                 </div> 
             `
         });
+        let playerAddCard = document.querySelectorAll(".playerToAdd");
+        playerAddCard.forEach(player => {
+            player.addEventListener("click", function () {
+               // console.log("id", player.dataset.id);
+                let i = null;
+                players.forEach((p, index) => {
+                    if (p.id == player.dataset.id) {
+                        i = index;
+                    }
+                })
+                let exist = null;
+                terrainPlayers.forEach(playeTer => {
+                    if (player.dataset.id == playeTer.id) {
+                        exist = true;
+                    }
+                })
+                if (exist) {
+                    modele.style.display = "none";
+                } else {
+                    
+                    
+                    terrainPlayers.push(players[i]);
+                    localStorage.setItem("terrainPlayers", JSON.stringify(terrainPlayers));
+                    
+                    
+                    modele.style.display = "none";
+                }
 
-        
+
+            })
+        })
+
+
+
         
     })
 });
