@@ -261,7 +261,7 @@ function modifierJoueur() {
     });
         const btnEdit = document.getElementById("btnEdit");
 
-        btnEdit.addEventListener("click", (e) => handleEdit(data, e), {once: true})
+        btnEdit.addEventListener("click", (e) => Edit(data, e), {once: true})
 
         const btnDelete = document.getElementById("btnDelete")
         btnDelete.addEventListener("click",function(e){
@@ -281,7 +281,7 @@ function modifierJoueur() {
         
 }
 
-function handleEdit (data, e) {
+function Edit (data, e) {
     e.preventDefault();
     
     let  joueur = {

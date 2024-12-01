@@ -22,4 +22,12 @@ let CM = document.getElementById("CM");
 let CML = document.getElementById("CML");
 let RW = document.getElementById("RW");
 let ST = document.getElementById("ST");
-let LW = document.getElementById("LW")
+let LW = document.getElementById("LW");
+
+// Manipulation des Joueurs (ajouter, modifier)
+allCards.forEach(card => {
+    card.addEventListener("click", function () {
+        modele.style.display = "flex";
+
+    })
+});
