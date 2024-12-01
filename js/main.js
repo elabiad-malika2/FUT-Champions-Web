@@ -124,7 +124,7 @@ allCards.forEach(card => {
        // console.log("bbb", playersFiltred);
         playersContent.innerHTML = ``;
 
-        playersFiltred.forEach(player => {
+        playersFiltred.forEach((player) => {
 
             playersContent.innerHTML += `
                 <div data-id="${player.id}"  class="playerToAdd relative">
@@ -164,9 +164,7 @@ allCards.forEach(card => {
                 } else {
                     if (indexPlayer !== null)
                     {
-                        terrainPlayers.splice(indexPlayer, 1)
-                        
-
+                        terrainPlayers.splice(indexPlayer, 1);
                     }
                     
                     terrainPlayers.push(players[i]);

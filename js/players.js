@@ -19,6 +19,8 @@ let pasForm = null;
 let shoForm = null; 
 let pacForm = null; 
 
+const btn = document.getElementById("editDelete");
+const btnAdd = document.getElementById("btnAdd");
 const nomForm = document.getElementById("name");
 const photoForm = document.getElementById("photo");
 const nationalityForm = document.getElementById("nationality");
@@ -180,19 +182,19 @@ function AfficherJoueur() {
 }
 
 
-function modifierJoueur() {
+function modifierJoueur() {  // Initialiser les valeurs du formulaire
     const playersCarte = document.querySelectorAll("#playersCarte");
-    const btn = document.getElementById("editDelete");
-    const btnAdd = document.getElementById("btnAdd");
+    
     let data=null;
 
-
+    
 
 
     playersCarte.forEach(element => {
         element.addEventListener("click", function () {
             btn.style.display = "flex";
             btnAdd.style.display = "none";
+            document.getElementById("form-title").innerText='Edit Player';
 
 
 
@@ -275,14 +277,22 @@ function modifierJoueur() {
             })
             players.splice(i,1);
             localStorage.setItem("players",JSON.stringify(players));
+            form.reset();
+            btn.style.display = "none";
+            btnAdd.style.display = "flex";
+            document.getElementById("form-title").innerText='Create Player';
             AfficherJoueur();
+
         })
 
         
 }
 
-function Edit (data, e) {
+function Edit (data, e) { 
     e.preventDefault();
+    if (!validerFormulaire()) {
+        return;
+    }
     
     let  joueur = {
         id: data.id,
@@ -322,8 +332,7 @@ function Edit (data, e) {
             i = index
         }
     })
-    console.log('player before', players[i])
-    console.log('player after', joueur)
+    
 
     players[i]=joueur;
     console.log('player edited', players[i])
@@ -349,6 +358,9 @@ function Edit (data, e) {
 
     AfficherJoueur();
     form.reset();
+    btn.style.display = "none";
+    btnAdd.style.display = "flex";
+    document.getElementById("form-title").innerText='Create Player';
     
 
 }
@@ -357,6 +369,7 @@ function Edit (data, e) {
 
 
 AfficherJoueur();
+// validation de formulaire 
 
 positionPlayer.addEventListener("change", function () {
     AfficherStatistique();
@@ -371,7 +384,11 @@ positionPlayer.addEventListener("change", function () {
     function addPlayer(e) {
         e.preventDefault();
 
-
+        if (!validerFormulaire()) {
+            return; // Arrêter si la validation échoue
+        }
+        
+        
         let playerAjouter = {
             name: nomForm.value,
             photo: photoForm.value,
@@ -410,7 +427,7 @@ positionPlayer.addEventListener("change", function () {
 
 
     }
-
+    
     document.getElementById('btnAdd').addEventListener('click', (event) => addPlayer(event));
 
 })
