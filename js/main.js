@@ -3,13 +3,16 @@ let modele = document.getElementById("popupModal");
 let playersContent = document.getElementById("playersContainer");
 let indexPlayer = null ;
 
-// For menu :
+// For menu
+
+
+
 const menuButton = document.getElementById("mobile-menu-button");
         const mobileMenu = document.getElementById("mobile-menu");
 
-    menuButton.addEventListener("click", () => {
+        menuButton.addEventListener("click", () => {
             mobileMenu.classList.toggle("hidden");
-    });
+        });
 
 // prendre tous les id des cartes 
 let GK = document.getElementById("GK");
@@ -22,7 +25,7 @@ let CM = document.getElementById("CM");
 let CML = document.getElementById("CML");
 let RW = document.getElementById("RW");
 let ST = document.getElementById("ST");
-let LW = document.getElementById("LW");
+let LW = document.getElementById("LW")
 
 let terrainPlayers = JSON.parse(localStorage.getItem("terrainPlayers")) || [];
 
@@ -101,6 +104,7 @@ function showPlayersTer() {
                 }
                 
             })
+            console.log('aza', indexPlayer)
             
             
             
@@ -108,12 +112,16 @@ function showPlayersTer() {
     })
 }
 
-
 // Manipulation des Joueurs (ajouter, modifier)
 allCards.forEach(card => {
     card.addEventListener("click", function () {
+        showPlayersTer();
+    // console.log("aaa", card.getAttribute("id"));
         modele.style.display = "flex";
+        
         let playersFiltred = players.filter((v) => v.position == card.getAttribute("id"));
+
+       // console.log("bbb", playersFiltred);
         playersContent.innerHTML = ``;
 
         playersFiltred.forEach(player => {
@@ -134,7 +142,7 @@ allCards.forEach(card => {
                     <p class="text-[6px] whitespace-nowrap absolute left-[57%] top-[75%]  font-extralight text-customText"> ${player.position == 'GK' ? player.positioning : player.physical} ${player.position == 'GK' ? 'POS' : 'PHY'} </p>
                 </div> 
             `
-        });
+        })
         let playerAddCard = document.querySelectorAll(".playerToAdd");
         playerAddCard.forEach(player => {
             player.addEventListener("click", function () {
@@ -173,8 +181,7 @@ allCards.forEach(card => {
         })
 
 
+    });
 
-
-        
-    })
-});
+})
+showPlayersTer();
