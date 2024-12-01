@@ -3,6 +3,8 @@ const positionPlayer = document.getElementById("PositionPlayer");
 const statPlayers = document.getElementById("playersSta");
 const form = document.getElementById("formulaire");
 
+
+
 let terrainPlayer = JSON.parse(localStorage.getItem("terrainPlayers")) ;
 
 let divForm = null;
@@ -28,6 +30,16 @@ const flagForm = document.getElementById("flag");
 const clubForm = document.getElementById("club");
 const logoForm = document.getElementById("logo");
 const ratingForm = document.getElementById("rating");
+
+
+// Pour burger menu
+
+const menuButton = document.getElementById("mobile-menu-button");
+        const mobileMenu = document.getElementById("mobile-menu");
+
+        menuButton.addEventListener("click", () => {
+            mobileMenu.classList.toggle("hidden");
+        });
 
 
 function AfficherStatistique() {

@@ -3,7 +3,7 @@ let modele = document.getElementById("popupModal");
 let playersContent = document.getElementById("playersContainer");
 let indexPlayer = null ;
 
-// For menu
+// Pour burger menu
 
 
 
