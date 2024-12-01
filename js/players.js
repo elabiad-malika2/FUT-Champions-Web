@@ -3,6 +3,8 @@ const positionPlayer = document.getElementById("PositionPlayer");
 const statPlayers = document.getElementById("playersSta");
 const form = document.getElementById("formulaire");
 
+let terrainPlayer = JSON.parse(localStorage.getItem("terrainPlayers")) ;
+
 let divForm = null;
 let hanForm = null;
 let kickForm = null;
@@ -175,10 +177,9 @@ function AfficherJoueur() {
 
     });
     modifierJoueur();
-
-
-
 }
+
+
 function modifierJoueur() {
     const playersCarte = document.querySelectorAll("#playersCarte");
     const btn = document.getElementById("editDelete");
@@ -234,6 +235,7 @@ function modifierJoueur() {
             flagForm.value = data.flag;
             nationalityForm.value = data.nationality;
             clubForm.value = data.club;
+            
             AfficherStatistique()
 
             if (data.position == "GK") {
@@ -258,59 +260,9 @@ function modifierJoueur() {
         })
     });
         const btnEdit = document.getElementById("btnEdit");
-        btnEdit.addEventListener("click", function (e) {
-            e.preventDefault();
-            console.log("aaa",data);
-            let  joueur = {
-                id: data.id,
-                photo: photoForm.value,
-                rating: ratingForm.value,
-                position: positionPlayer.value,
-                logo: logoForm.value,
-                name: nomForm.value,
-                flag: flagForm.value,
-                nationality: nationalityForm.value,
-                club: clubForm.value,
-            }
-            console.log(joueur)
-            if (joueur.position == "GK") {
-                joueur.diving = divForm.value;
-                joueur.handling = hanForm.value;
-                joueur.kicking = kickForm.value;
-                joueur.reflexes = refForm.value;
-                joueur.speed = speForm.value;
-                joueur.positioning = posForm.value;
 
-            } else {
-                joueur.pace = pacForm.value;
-                joueur.shooting =shoForm.value ;
-                joueur.passing = pasForm.value ;
-                joueur.dribbling = driForm.value;
-                joueur.defending = defForm.value ;
-                joueur.physical =phyForm.value ;
-            }
+        btnEdit.addEventListener("click", (e) => handleEdit(data, e), {once: true})
 
-            console.log("jjj",joueur);
-            let i;
-            players.forEach((p,index) => {
-                if(p.id == data.id)
-                {
-                   i  = index
-                }
-            })
-            console.log('player before', players[i])
-            console.log('player after', joueur)
-
-            players[i]=joueur;
-            console.log('player edited', players[i])
-
-            localStorage.setItem("players",JSON.stringify(players));
-            AfficherJoueur();
-            form.reset();
-            
-            
-
-        }, { once: true})
         const btnDelete = document.getElementById("btnDelete")
         btnDelete.addEventListener("click",function(e){
             e.preventDefault();
@@ -329,7 +281,77 @@ function modifierJoueur() {
         
 }
 
+function handleEdit (data, e) {
+    e.preventDefault();
+    
+    let  joueur = {
+        id: data.id,
+        photo: photoForm.value,
+        rating: ratingForm.value,
+        position: positionPlayer.value,
+        logo: logoForm.value,
+        name: nomForm.value,
+        flag: flagForm.value,
+        nationality: nationalityForm.value,
+        club: clubForm.value,
+    }
+    console.log(joueur)
+    if (joueur.position == "GK") {
+        joueur.diving = divForm.value;
+        joueur.handling = hanForm.value;
+        joueur.kicking = kickForm.value;
+        joueur.reflexes = refForm.value;
+        joueur.speed = speForm.value;
+        joueur.positioning = posForm.value;
 
+    } else {
+        joueur.pace = pacForm.value;
+        joueur.shooting =shoForm.value ;
+        joueur.passing = pasForm.value ;
+        joueur.dribbling = driForm.value;
+        joueur.defending = defForm.value ;
+        joueur.physical =phyForm.value ;
+    }
+
+    console.log("jjj",joueur);
+    let i;
+    // Modified player in players
+    players.forEach((p,index) => {
+        if(p.id == data.id)
+        {
+            i = index
+        }
+    })
+    console.log('player before', players[i])
+    console.log('player after', joueur)
+
+    players[i]=joueur;
+    console.log('player edited', players[i])
+
+    localStorage.setItem("players",JSON.stringify(players));
+
+    // Modified players in terrain
+    i=null
+    terrainPlayer.forEach((p,index) => {
+        if(p.id == data.id)
+        {
+            i = index
+        }
+    })
+    console.log('player before', terrainPlayer[i])
+    console.log('player after', joueur)
+
+    terrainPlayer[i]=joueur;
+    console.log('player edited', terrainPlayer[i])
+
+    localStorage.setItem("terrainPlayers",JSON.stringify(terrainPlayer));
+
+
+    AfficherJoueur();
+    form.reset();
+    
+
+}
 
 
 
@@ -339,12 +361,12 @@ AfficherJoueur();
 positionPlayer.addEventListener("change", function () {
     AfficherStatistique();
 
-    const pacForm = document.getElementById("pac");
-    const shoForm = document.getElementById("sho");
-    const pasForm = document.getElementById("pas");
-    const driForm = document.getElementById("dri");
-    const defForm = document.getElementById("def");
-    const phyForm = document.getElementById("phy");
+    pacForm = document.getElementById("pac");
+    shoForm = document.getElementById("sho");
+    pasForm = document.getElementById("pas");
+    driForm = document.getElementById("dri");
+    defForm = document.getElementById("def");
+    phyForm = document.getElementById("phy");
 
     function addPlayer(e) {
         e.preventDefault();

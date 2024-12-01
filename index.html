@@ -1,5 +1,6 @@
 <!DOCTYPE html>
 <html lang="en">
+
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
@@ -7,77 +8,135 @@
     <link rel="stylesheet" href="./src/output.css">
     <title>FUT Champion</title>
 </head>
+
 <body>
+    <header class="bg-gray-900  text-white">
+        <div class="max-w-7xl mx-auto px-4 py-5 flex justify-between items-center">
+            <!-- Logo -->
+            <div class="text-2xl font-semibold">
+                <a href="#" class="hover:text-gray-200">MonSite</a>
+            </div>
+
+            <!-- Navigation Menu -->
+            <nav class="hidden md:flex space-x-6">
+                <a href="#" class="hover:text-gray-200">Squad Builder</a>
+                <a href="/pages/joueurs.html" class="hover:text-gray-200">Players</a>
+            </nav>
+
+            <!-- Mobile Menu Button -->
+            <div class="md:hidden flex items-center">
+                <button id="mobile-menu-button" class="text-white">
+                    <svg class="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
+                        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4 6h16M4 12h16M4 18h16"></path>
+                    </svg>
+                </button>
+            </div>
+        </div>
+
+        <!-- Mobile Menu  -->
+        <div id="mobile-menu" class="md:hidden hidden bg-gray-900">
+            <div class="px-2 pt-2 pb-3 space-y-1 sm:px-3">
+                <a href="#" class="block text-white py-2 px-3 rounded-md hover:bg-blue-800">Squad Builder</a>
+                <a href="/pages/joueurs.html" class="block text-white py-2 px-3 rounded-md hover:bg-blue-800">Players</a>
+                
+            </div>
+        </div>
+    </header>
     <main class="h-[150vh]">
         <div id="terrain" class="relative">
-            <div class="flex justify-center items-center pt-[2rem]">
-                <img class="w-[40rem] h-4/5" src="/images/terrain3d2.png" alt=" " />
+            <div class="flex justify-center items-center pt-8">
+                <!-- Image du terrain -->
+                <img class="w-full max-w-3xl h-[60vh] sm:h-[80vh] md:h-auto" src="/images/terrain3d2.png" alt="Terrain" />
             </div>
-            <div class="absolute w-full h-full left-0 top-0 flex flex-col gap-10">
-                <div class="flex justify-center gap-12">
-                    <div id="LW" class="relative">
-                        <img id="LW" class=" w-28" src="/images/card.png" alt="LW">
-                        <img class="absolute left-[28%] top-[12%] w-[60px] h-[60px]" src="https://cdn.sofifa.net/players/158/023/25_120.png">
-                        <span class=" absolute left-[22%] top-[22%] text-xs text-customText ">89</span>
-                        <img class="absolute left-[22%] top-[32%] w-[12px] h-[6px]" src="https://cdn.sofifa.net/flags/ar.png">
-                        <img class="absolute left-[23%] top-[38%] w-[12px] h-[6px]" src="https://cdn.sofifa.net/meta/team/239235/120.png">
-                        <p class="name whitespace-nowrap absolute left-1/2 -translate-x-1/2 top-[52%] font-extralight text-customText">Lionel Messi</p>
-                        <p class="text-[6px] whitespace-nowrap absolute left-[28%] top-[64%]  font-extralight text-customText">85 PAC </p>
-                        <p class="text-[6px] whitespace-nowrap absolute left-[28%] top-[69%]  font-extralight text-customText">92 SHO </p>
-                        <p class="text-[6px] whitespace-nowrap absolute left-[28%] top-[75%]  font-extralight text-customText">91 PAS </p>
-                        <p class="text-[6px] whitespace-nowrap absolute left-[57%] top-[64%]  font-extralight text-customText">95 DRI </p>
-                        <p class="text-[6px] whitespace-nowrap absolute left-[57%] top-[69%]  font-extralight text-customText">34 DEF </p>
-                        <p class="text-[6px] whitespace-nowrap absolute left-[57%] top-[75%]  font-extralight text-customText">65 PHI </p>
-                    </div>                    
-                    <div id="ST">
-                        <img id="ST" class="w-24 translate-y-10" src="/images/carteblack1.png" alt="ST">
+            <div class="absolute inset-0 flex flex-col gap-6 md:gap-10">
+                <!-- Attaquants -->
+                <div class="flex justify-center gap-6 md:gap-12">
+                    <div id="LW" class="card relative">
+                        <img class="w-16 md:w-24" src="/images/carteblack1.png" alt="LW">
                     </div>
-                    <div id="RW">
-                        <img id="RW" class="w-24" src="/images/carteblack1.png" alt="RW">
+                    <div id="ST" class="card relative">
+                        <img class="w-16 md:w-24 translate-y-4 md:translate-y-10" src="/images/carteblack1.png"
+                            alt="ST">
+                    </div>
+                    <div id="RW" class="card relative">
+                        <img class="w-16 md:w-24" src="/images/carteblack1.png" alt="RW">
                     </div>
                 </div>
-                <div class="flex justify-center gap-12">
-                    <div id="CM">
-                        <img id="CM1" class="w-24" src="/images/carteblack1.png" alt="CM1">
-                    </div>
-                    <div id="">
-                        <img id="CM2" class="w-24 translate-y-10" src="/images/carteblack1.png" alt="CM2">
-                    </div>
-                    <div id="">
-                        <img id="CM3" class="w-24" src="/images/carteblack1.png" alt="CM3">
-                    </div>
-                </div>
-                <div class="flex justify-center gap-12">
-                    <div id="LB">
-                        <img id="LB" class="w-24" src="/images/carteblack1.png" alt="LB">
 
+                <!-- Milieux de terrain -->
+                <div class="flex justify-center gap-6 md:gap-12">
+                    <div id="CML" class="card relative">
+                        <img class="w-16 md:w-24" src="/images/carteblack1.png" alt="CML">
                     </div>
-                    <div id="CB">
-                        <img id="CB1" class="w-24 translate-y-10" src="/images/carteblack1.png" alt="CB1">
+                    <div id="CM" class="card relative">
+                        <img class="w-16 md:w-24 translate-y-4 md:translate-y-10" src="/images/carteblack1.png"
+                            alt="CM">
                     </div>
-                    <div id>
-                        <img id="CB2" class="w-24 translate-y-10" src="/images/carteblack1.png" alt="CB2">
-                    </div>
-                    <div id="RB">
-                        <img id="RB" class="w-24 " src="/images/carteblack1.png" alt="RB">
+                    <div id="CMR" class="card relative">
+                        <img class="w-16 md:w-24" src="/images/carteblack1.png" alt="CMR">
                     </div>
                 </div>
-                <div class="flex justify-center gap-14">
-                    <img id="GK" s class="w-24" src="/images/carteblack1.png" alt="GK">
+
+                <!-- Défenseurs -->
+                <div class="flex justify-center gap-4 md:gap-6 lg:gap-12">
+                    <div id="LB" class="card relative">
+                        <img class="w-16 md:w-24" src="/images/carteblack1.png" alt="LB">
+                    </div>
+                    <div id="CBL" class="card relative">
+                        <img class="w-16 md:w-24 translate-y-4 md:translate-y-10" src="/images/carteblack1.png"
+                            alt="CBL">
+                    </div>
+                    <div id="CBR" class="card relative">
+                        <img class="w-16 md:w-24 translate-y-4 md:translate-y-10" src="/images/carteblack1.png"
+                            alt="CBR">
+                    </div>
+                    <div id="RB" class="card relative">
+                        <img class="w-16 md:w-24" src="/images/carteblack1.png" alt="RB">
+                    </div>
+                </div>
+
+                <!-- Gardien -->
+                <div id="GK" class="card flex justify-center">
+                    <img class="w-16 md:w-24" src="/images/carteblack1.png" alt="GK">
                 </div>
             </div>
         </div>
         <div class="bg-[rgba(2,25,73,0.31)] mt-10 py-4 rounded-[30px] border border-white max-w-[42rem] mx-auto">
-            <div class="flex gap-8 max-w-[38rem] overflow-x-scroll py-4 justify-center mx-auto ">
-                <img id="LW" class="w-24" src="/images/carteblack1.png" alt="LW">
-                <img id="ST" class="w-24 " src="/images/carteblack1.png" alt="ST">
-                <img id="RW" class="w-24" src="/images/carteblack1.png" alt="RW">
-                <img id="CM" class="w-24" src="/images/carteblack1.png" alt="CM">
-                <img id="LB" class="w-24" src="/images/carteblack1.png" alt="LB">
-                <img id="CB" class="w-24" src="/images/carteblack1.png" alt="CB">
-                <img id="RB" class="w-24" src="/images/carteblack1.png" alt="RB">
+            <!-- Conteneur des cartes -->
+            <div class="grid sm:flex sm:gap-8 sm:overflow-x-scroll overflow-y-scroll sm:grid-cols-none grid-cols-2 gap-4 sm:h-auto h-80 justify-center mx-auto">
+                <!-- Cartes -->
+                <img id="LW" class="w-24 mx-auto sm:mx-0" src="/images/carteblack1.png" alt="LW">
+                <img id="ST" class="w-24 mx-auto sm:mx-0" src="/images/carteblack1.png" alt="ST">
+                <img id="RW" class="w-24 mx-auto sm:mx-0" src="/images/carteblack1.png" alt="RW">
+                <img id="CM" class="w-24 mx-auto sm:mx-0" src="/images/carteblack1.png" alt="CM">
+                <img id="LB" class="w-24 mx-auto sm:mx-0" src="/images/carteblack1.png" alt="LB">
+                <img id="CB" class="w-24 mx-auto sm:mx-0" src="/images/carteblack1.png" alt="CB">
+                <img id="RB" class="w-24 mx-auto sm:mx-0" src="/images/carteblack1.png" alt="RB">
             </div>
         </div>
+        
+        
+        
     </main>
+
+
+    <!-- Popup Modal -->
+    <div id="popupModal" class="fixed inset-0 hidden items-center justify-center bg-black bg-opacity-50 ">
+        <div class="bg-gray-900 rounded-lg shadow-lg w-3/5 h-3/5">
+            <div class="">
+                <div id="playersContainer" class="flex-wrap flex justify-center items-center gap-12">
+                </div>
+                <div class=" mt-6 flex justify-end">
+                    <button onclick="document.getElementById('popupModal').style.display = 'none'" id="closeModal"
+                        class="px-4 py-2 text-white bg-red-500 rounded hover:bg-red-600">
+                        Close
+                    </button>
+                </div>
+            </div>
+
+        </div>
+    </div>
+    <script src="/js/main.js"></script>
 </body>
+
 </html>
