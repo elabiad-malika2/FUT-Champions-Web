@@ -287,6 +287,17 @@ function modifierJoueur() {  // Initialiser les valeurs du formulaire
                 }
 
             })
+            let indice = null ;
+            terrainPlayer.forEach((p,index)=>{
+                if (p.id == data.id) {
+                    indice = index;
+                }
+
+            })
+            if (indice !== null) {
+                terrainPlayer.splice(indice,1);
+                localStorage.setItem("terrainPlayers",JSON.stringify(terrainPlayer));
+            }
             players.splice(i,1);
             localStorage.setItem("players",JSON.stringify(players));
             form.reset();
