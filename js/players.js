@@ -381,10 +381,12 @@ function Edit (data, e) {
 
 
 AfficherJoueur();
+
+
 function validerFormulaire() {
     const regexNom = /^[a-zA-Z\s]+$/; 
     const regexURL = /^https:\/\/[^\s]+$/;
-    const regexRating = /^\d+$/;
+    const regexRating = /^(0[1-9]|[1-9][0-9]|100)$/;
     const regexNationalite = /^[a-zA-Z\s]+$/; 
 
     let isValid = true;
