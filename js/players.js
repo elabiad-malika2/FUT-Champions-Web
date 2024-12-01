@@ -369,7 +369,46 @@ function Edit (data, e) {
 
 
 AfficherJoueur();
-// validation de formulaire 
+function validerFormulaire() {
+    const regexNom = /^[a-zA-Z\s]+$/; 
+    const regexURL = /^https:\/\/[^\s]+$/;
+    const regexRating = /^\d+$/;
+    const regexNationalite = /^[a-zA-Z\s]+$/; 
+
+    let isValid = true;
+
+    if (!regexNom.test(nomForm.value) || nomForm.value.trim() === "") {
+        alert("Nom invalide. Veuillez entrer uniquement des lettres.");
+        isValid = false;
+    }
+
+    if (!regexURL.test(photoForm.value)) {
+        alert("Photo invalide. Veuillez entrer une URL valide.");
+        isValid = false;
+    }
+
+    if (!regexURL.test(logoForm.value)) {
+        alert("Logo invalide. Veuillez entrer une URL valide.");
+        isValid = false;
+    }
+
+    if (!regexURL.test(flagForm.value)) {
+        alert("Drapeau invalide. Veuillez entrer une URL valide.");
+        isValid = false;
+    }
+
+    if (!regexRating.test(ratingForm.value) || ratingForm.value < 1 || ratingForm.value > 100) {
+        alert("Note invalide. Veuillez entrer une valeur entre 1 et 100.");
+        isValid = false;
+    }
+
+    if (!regexNationalite.test(nationalityForm.value) || nationalityForm.value.trim() === "") {
+        alert("Nationalité invalide. Veuillez entrer uniquement des lettres.");
+        isValid = false;
+    }
+
+    return isValid;
+}
 
 positionPlayer.addEventListener("change", function () {
     AfficherStatistique();
