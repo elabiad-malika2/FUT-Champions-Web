@@ -16,8 +16,8 @@ let phyForm = null;
 let defForm = null;
 let driForm = null;
 let pasForm = null;
-let shoForm = null;
-let pacForm = null;
+let shoForm = null; 
+let pacForm = null; 
 
 const nomForm = document.getElementById("name");
 const photoForm = document.getElementById("photo");
@@ -235,7 +235,7 @@ function modifierJoueur() {
             flagForm.value = data.flag;
             nationalityForm.value = data.nationality;
             clubForm.value = data.club;
-            
+
             AfficherStatistique()
 
             if (data.position == "GK") {
