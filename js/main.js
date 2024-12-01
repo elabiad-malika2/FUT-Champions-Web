@@ -24,6 +24,91 @@ let RW = document.getElementById("RW");
 let ST = document.getElementById("ST");
 let LW = document.getElementById("LW");
 
+let terrainPlayers = JSON.parse(localStorage.getItem("terrainPlayers")) || [];
+
+
+let players = JSON.parse(localStorage.getItem("players"));
+
+function contentPlayerTerrain(player) {
+    return `
+                
+            <div data-id="${player.id}" class="playerId relative">
+                <img class="w-24 sm:w-28 md:w-32 lg:w-36" src="../images/card.png" alt="LW">
+                <img class="absolute left-[28%] sm:left-[24%] top-[12%] sm:top-[10%] w-[50px] sm:w-[60px] md:w-[70px] lg:w-[80px] h-[50px] sm:h-[60px] md:h-[70px] lg:h-[80px]" src="${player.photo}">
+                <span class="absolute left-[22%] sm:left-[20%] top-[22%] sm:top-[18%] text-[10px] sm:text-xs md:text-sm text-customText">${player.rating}</span>
+                <img class="absolute left-[22%] sm:left-[20%] top-[32%] sm:top-[28%] w-[10px] sm:w-[12px] h-[6px]" src="${player.flag}">
+                <img class="absolute left-[23%] sm:left-[21%] top-[38%] sm:top-[34%] w-[10px] sm:w-[12px] h-[6px]" src="${player.logo}">
+                <p class="name whitespace-nowrap absolute left-1/2 -translate-x-1/2 top-[52%] sm:top-[48%] text-[8px] sm:text-xs md:text-sm font-extralight text-customText">${player.name}</p>
+                <p class="text-[6px] sm:text-[8px] md:text-xs absolute left-[28%] sm:left-[25%] top-[64%] sm:top-[60%] font-extralight text-customText">${player.position == 'GK' ? player.diving : player.pace} ${player.position == 'GK' ? 'DIV' : 'PAC'}</p>
+                <p class="text-[6px] sm:text-[8px] md:text-xs absolute left-[28%] sm:left-[25%] top-[69%] sm:top-[65%] font-extralight text-customText">${player.position == 'GK' ? player.handling : player.shooting} ${player.position == 'GK' ? 'HAN' : 'SHO'}</p>
+                <p class="text-[6px] sm:text-[8px] md:text-xs absolute left-[28%] sm:left-[25%] top-[75%] sm:top-[70%] font-extralight text-customText">${player.position == 'GK' ? player.kicking : player.passing} ${player.position == 'GK' ? 'KICK' : 'PAS'}</p>
+                <p class="text-[6px] sm:text-[8px] md:text-xs absolute left-[57%] sm:left-[54%] top-[64%] sm:top-[60%] font-extralight text-customText">${player.position == 'GK' ? player.reflexes : player.dribbling} ${player.position == 'GK' ? 'REF' : 'DRI'}</p>
+                <p class="text-[6px] sm:text-[8px] md:text-xs absolute left-[57%] sm:left-[54%] top-[69%] sm:top-[65%] font-extralight text-customText">${player.position == 'GK' ? player.speed : player.defending} ${player.position == 'GK' ? 'SPE' : 'DEF'}</p>
+                <p class="text-[6px] sm:text-[8px] md:text-xs absolute left-[57%] sm:left-[54%] top-[75%] sm:top-[70%] font-extralight text-customText">${player.position == 'GK' ? player.positioning : player.physical} ${player.position == 'GK' ? 'POS' : 'PHY'}</p>
+            </div>
+
+            `;
+    
+            
+};
+
+function showPlayersTer() {
+    terrainPlayers.forEach(player => {
+        if (player.position == "GK") {
+            GK.innerHTML = contentPlayerTerrain(player);
+        }
+        if (player.position == "RB") {
+            RB.innerHTML = contentPlayerTerrain(player);
+        }
+        if (player.position == "LB") {
+            LB.innerHTML = contentPlayerTerrain(player);
+        }
+        if (player.position == "CBR") {
+            CBR.innerHTML = contentPlayerTerrain(player);
+        }
+        if (player.position == "CBL") {
+            CBL.innerHTML = contentPlayerTerrain(player);
+        }
+        if (player.position == "CM") {
+            CM.innerHTML = contentPlayerTerrain(player);
+        }
+        if (player.position == "CML") {
+            CML.innerHTML = contentPlayerTerrain(player);
+        }
+        if (player.position == "CMR") {
+            CMR.innerHTML = contentPlayerTerrain(player);
+        }
+        if (player.position == "LW") {
+            LW.innerHTML = contentPlayerTerrain(player);
+        }
+        if (player.position == "RW") {
+            RW.innerHTML = contentPlayerTerrain(player);
+        }
+        if (player.position == "ST") {
+            ST.innerHTML = contentPlayerTerrain(player);
+        }
+    })
+    let playerId = document.querySelectorAll(".playerId");
+
+    playerId.forEach(element=>{
+        console.log()
+        element.addEventListener("click",function () {
+            console.log("id",element.dataset.id);
+            indexPlayer = null;
+            terrainPlayers.forEach((player,index)=>{
+                if (player.id == element.dataset.id) {
+                    indexPlayer=index;
+                }
+                
+            })
+            
+            
+            
+        })
+    })
+}
+
+
 // Manipulation des Joueurs (ajouter, modifier)
 allCards.forEach(card => {
     card.addEventListener("click", function () {
@@ -69,18 +154,24 @@ allCards.forEach(card => {
                 if (exist) {
                     modele.style.display = "none";
                 } else {
-                    
+                    if (indexPlayer !== null)
+                    {
+                        terrainPlayers.splice(indexPlayer, 1)
+                        
+
+                    }
                     
                     terrainPlayers.push(players[i]);
                     localStorage.setItem("terrainPlayers", JSON.stringify(terrainPlayers));
-                    
-                    
+                    showPlayersTer();
+                    indexPlayer = null;
                     modele.style.display = "none";
                 }
 
 
             })
         })
+
 
 
 
