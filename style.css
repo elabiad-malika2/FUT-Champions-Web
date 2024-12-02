@@ -10,31 +10,3 @@ main {
 .name{
     font-size: 9px;
 }
-
-::-webkit-scrollbar {
-    width: 2px;
-    height: 4px; 
-    
-
-}
-
-::-webkit-scrollbar-track {
-    background: #f1f1f1; 
-    border-radius: 10px;
-}
-
-
-::-webkit-scrollbar-thumb {
-    background: #1c1b1b; 
-    border-radius: 10px;
-}
-
-
-::-webkit-scrollbar-thumb:hover {
-    background: #555; 
-}
-
-
-::-webkit-scrollbar-corner {
-    background: #f1f1f1;
-}

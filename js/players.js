@@ -64,8 +64,8 @@ function AfficherStatistique() {
                                     class="w-32 p-2 bg-gray-800 border border-gray-600 rounded-lg text-white placeholder-gray-400 focus:outline-none focus:ring-2 focus:ring-yellow-500"
                                     type="number" min="1" max="100">
                             </div>
-                        </div>
-                        <div class="flex flex-col gap-3">
+                </div>
+                <div class="flex flex-col gap-3">
                             <div class="flex items-center gap-3">
                                 <label  class="text-sm font-semibold text-white">Reflexes</label>
                                 <input id="ref" 
@@ -84,7 +84,7 @@ function AfficherStatistique() {
                                     class="w-32 p-2 bg-gray-800 border border-gray-600 rounded-lg text-white placeholder-gray-400 focus:outline-none focus:ring-2 focus:ring-yellow-500"
                                     type="number" min="1" max="100">
                             </div>
-                        </div>
+                </div>
             `
     } else {
         statPlayers.innerHTML = `
