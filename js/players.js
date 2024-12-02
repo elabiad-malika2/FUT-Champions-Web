@@ -287,6 +287,7 @@ function modifierJoueur() {  // Initialiser les valeurs du formulaire
                 }
 
             })
+            // Supprimer le joueur de terrain de players 
             let indice = null ;
             terrainPlayer.forEach((p,index)=>{
                 if (p.id == data.id) {
@@ -370,11 +371,11 @@ function Edit (data, e) {
             i = index
         }
     })
-    console.log('player before', terrainPlayer[i])
-    console.log('player after', joueur)
+    // console.log('player before', terrainPlayer[i])
+    // console.log('player after', joueur)
 
     terrainPlayer[i]=joueur;
-    console.log('player edited', terrainPlayer[i])
+    // console.log('player edited', terrainPlayer[i])
 
     localStorage.setItem("terrainPlayers",JSON.stringify(terrainPlayer));
 
@@ -434,6 +435,8 @@ function validerFormulaire() {
 
     return isValid;
 }
+
+// Ajouter un joueur
 
 positionPlayer.addEventListener("change", function () {
     AfficherStatistique();

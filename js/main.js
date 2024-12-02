@@ -30,7 +30,7 @@ let LW = document.getElementById("LW")
 let terrainPlayers = JSON.parse(localStorage.getItem("terrainPlayers")) || [];
 
 
-let players = JSON.parse(localStorage.getItem("players"));
+let players = JSON.parse(localStorage.getItem("players")) || [];
 
 function contentPlayerTerrain(player) {
     return `
